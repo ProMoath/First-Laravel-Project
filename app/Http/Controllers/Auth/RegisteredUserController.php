@@ -20,7 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+//        return view('auth.register');
+        return \view('theme.register');
     }
 
     /**
@@ -36,6 +37,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -46,6 +48,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+//        return redirect(RouteServiceProvider::HOME);
+        return to_route('theme.index');
     }
 }

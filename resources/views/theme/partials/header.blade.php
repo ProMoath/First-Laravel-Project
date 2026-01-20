@@ -32,14 +32,23 @@
                     <!-- End - Add new blog -->
 
                     <ul class="nav navbar-nav navbar-right navbar-social">
-                        <a href="#" class="btn btn-sm btn-warning">Register / Login</a>
-                        <!-- <li class="nav-item submenu dropdown">
+                        @if(!Auth::check())
+                        <a href="{{ route('register') }}" class="btn btn-sm btn-warning">Register / Login</a><!--     we dont need to use theme.register because we have customized the ones in auth and used it      -->
+                        @else
+                        <li class="nav-item submenu dropdown">
                           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">Welcome User</a>
+                            aria-expanded="false">Welcome {{Auth::user()->name}}</a>
                           <ul class="dropdown-menu">
-                            <li class="nav-item"><a class="nav-link" href="single-blog.blade.php">My Blogs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="s{{route('theme.singleBlog')}}">My Blogs</a></li>
+                            <li class="nav-item">
+                              <form action="{{route('logout')}}" method="post">
+                                  @csrf
+                                <a class="nav-link" href="javascript:$('form').submit();">Logout</a>
+                              </form>
+                            </li>
                           </ul>
-                        </li> -->
+                        @endif
+                        </li>
                     </ul>
                 </div>
             </div>
