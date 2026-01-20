@@ -15,26 +15,36 @@
                 <div class="single-footer-widget">
                     <h6>Newsletter</h6>
                     <p>Stay update with our latest</p>
-                    <div class="" id="mc_embed_signup">
+                    <div class="" id="">
 
-                        <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                              method="get" class="form-inline">
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{session('success')}}
+                            </div>
+                        @endif
+                        <form  novalidate="true" action={{route('subscribe/store')}}
+                              method="post" class="form-inline">
+                            @csrf
 
                             <div class="d-flex flex-row">
 
-                                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
-                                       required="" type="email">
-
-
-                                <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                                </div>
+                                <input class="form-control" name="email" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '"
+                                       required="" type="email" value="{{old('email')}}">
+                                <button type="submit" class="but"><span class="lnr lnr-arrow-right"></span></button>
+                                <style>
+                                    .but{
+-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: transparent;--blue: #007bff;--indigo: #6610f2;--purple: #6f42c1;--pink: #e83e8c;--red: #dc3545;--orange: #fd7e14;--yellow: #ffc107;--green: #28a745;--teal: #20c997;--cyan: #17a2b8;--white: #fff;--gray: #6c757d;--gray-dark: #343a40;--primary: #007bff;--secondary: #6c757d;--success: #28a745;--info: #17a2b8;--warning: #ffc107;--danger: #dc3545;--light: #f8f9fa;--dark: #343a40;--breakpoint-xs: 0;--breakpoint-sm: 576px;--breakpoint-md: 768px;--breakpoint-lg: 992px;--breakpoint-xl: 1200px;--font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;box-sizing: border-box;margin: 0;font-family: inherit;overflow: visible;text-transform: none;-webkit-appearance: button;display: inline-block;font-weight: 400;text-align: center;white-space: nowrap;vertical-align: middle;user-select: none;font-size: 1rem;line-height: 1.5;transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;background: #ff9907;color: #222;border-radius: 0;border-top-left-radius: 0px;border-bottom-left-radius: 0px;padding: 6px 12px;border: 0;cursor: pointer;
+}
+                                </style>
+{{--                                <div style="position: absolute; left: -5000px;">--}}
+{{--                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">--}}
+{{--                                </div>--}}
 
                                 <!-- <div class="col-lg-4 col-md-4">
                                       <button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
                                     </div>  -->
                             </div>
+                                @error('email')<span class="text-danger">{{$message}}</span>  @enderror
                             <div class="info"></div>
                         </form>
                     </div>
