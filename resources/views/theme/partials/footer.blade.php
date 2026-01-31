@@ -22,7 +22,7 @@
                                 {{session('success')}}
                             </div>
                         @endif
-                        <form  novalidate="true" action={{route('subscribe/store')}}
+                        <form  novalidate="true" action={{route('subscribe.store')}}
                               method="post" class="form-inline">
                             @csrf
 
