@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriberController;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThemeController;
 
@@ -18,14 +20,16 @@ use App\Http\Controllers\ThemeController;
 */
 
 Route::controller(ThemeController::class)->name('theme.')->group(function () {
-    Route::get('/', 'index')->name('index');
+    Route::get('/','index')->name('index');
     Route::get('/category', 'category')->name('category');
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/single-blog', 'singleBlog')->name('singleBlog');
 //    Route::get('/login', 'login')->name('login'); => we used the ready routing and middleware in auth page;
 //    Route::get('/register', 'register')->name('register');*
 });
-Route::post('/subscribe/store', [SubscriberController::class, 'store'])->name('subscribe/store');
+// Subscriber Store Routes
+Route::post('/subscribe/store', [SubscriberController::class, 'store'])->name('subscribe.store');
+Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 /*
 Route::get('/', function () {

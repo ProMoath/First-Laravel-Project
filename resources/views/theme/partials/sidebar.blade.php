@@ -1,3 +1,7 @@
+@php
+    use App\Models\Category;
+    $Categories = Category::get();
+@endphp
 <!-- Start Blog Post Siddebar -->
 <div class="col-lg-4 sidebar-widgets">
     <div class="widget-wrap">
@@ -8,7 +12,7 @@
                  {{session('success')}}
                 </div>
             @endif
-            <form action="{{route('subscribe/store')}}" method="post">
+            <form action="{{route('subscribe.store')}}" method="post">
                 @csrf
             <div class="form-group mt-30">
                 <div class="col-autos">
@@ -24,40 +28,22 @@
         </div>
 
         <div class="single-sidebar-widget post-category-widget">
-            <h4 class="single-sidebar-widget__title">Catgory</h4>
+            <h4 class="single-sidebar-widget__title">Category</h4>
             <ul class="cat-list mt-20">
+                @foreach($Categories as $Category)
+
                 <li>
                     <a href="#" class="d-flex justify-content-between">
-                        <p>Technology</p>
+                        <p>{{$Category -> name}}</p>
                         <p>(03)</p>
                     </a>
                 </li>
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Software</p>
-                        <p>(09)</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Lifestyle</p>
-                        <p>(12)</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Shopping</p>
-                        <p>(02)</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="d-flex justify-content-between">
-                        <p>Food</p>
-                        <p>(10)</p>
-                    </a>
-                </li>
+                @endforeach
+
             </ul>
         </div>
+
+        @if(count($Categories) > 0)
 
         <div class="single-sidebar-widget popular-post-widget">
             <h4 class="single-sidebar-widget__title">Recent Post</h4>
@@ -109,5 +95,6 @@
             </div>
         </div>
     </div>
+        @endif
 </div>
 <!-- End Blog Post Siddebar -->
